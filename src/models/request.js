@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
     static associate(models) {
       // Define asociaciones si las hay
+      Request.hasMany(models.Terreno, {
+        foreignKey: 'requestId',
+        as: 'terrenos',
+      });
     }
   }
 

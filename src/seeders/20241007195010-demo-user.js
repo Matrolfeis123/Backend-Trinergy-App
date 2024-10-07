@@ -1,26 +1,26 @@
-// seeders/XXXXXXXXXXXXXX-demo-user.js
 'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('users', [
       {
-        id: 10,
-        subestacion: 'Subestacion 1',
+        id: 1,
+        subestacion: 'John Doe',
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: 2,
-        subestacion: 'Subestacion 2',
+        subestacion: 'Jane Doe',
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: 3,
-        subestacion: 'Subestacion 3',
+        subestacion: 'Sam Smith',
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
-      {
-        id: 4,
-        subestacion: 'Subestacion 4',
-      },
-
     ]);
   },
 

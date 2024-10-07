@@ -21,3 +21,28 @@ exports.getAllUsers = async (req, res) => {
         });
     }
 };
+
+exports.getUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findByPk(id);
+
+        if (user) {
+            res.status(200).json({
+                success: true,
+                data: user,
+            });
+        } else {
+            res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado',
+            });
+        }
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener el usuario',
+        });
+    }
+};

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const requestController = require('../controllers/requestController');
+console.log(requestController);
 
 // Ruta para obtener todas las solicitudes
 router.get('/', requestController.getAllRequests);

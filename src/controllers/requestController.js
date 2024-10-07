@@ -11,6 +11,22 @@ exports.getAllRequests = async (req, res) => {
     }
 };
 
+exports.getRequestById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const request = await Request.findByPk(id);
+
+        if (request) {
+            res.status(200).json({ success: true, data: request });
+        } else {
+            res.status(404).json({ success: false, message: 'Solicitud no encontrada' });
+        }
+    } catch (error) {
+        console.error('Error al obtener la solicitud:', error);
+        res.status(500).json({ success: false, message: 'Error al obtener la solicitud' });
+    }
+};
+
 // Crear una nueva solicitud (POST)
 exports.createRequest = async (req, res) => {
     try {
