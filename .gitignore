@@ -1,4 +1,4 @@
 .env
 .dockerignore
-
+image.png
 node_modules
