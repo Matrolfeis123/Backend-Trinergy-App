@@ -1,18 +1,22 @@
+require('dotenv').config();
 const express = require('express');
+const app = express();
 
-
-const userRoutes = require('./routes/userRoutes');
+// Importar rutas
+const usuarioRoutes = require('./routes/usuarioRoutes');
 const requestRoutes = require('./routes/requestRoutes');
 const terrenoRoutes = require('./routes/terrenoRoutes');
 
-const app = express();
 
 
 // Middleware
-app.use(express.json());
+// const errorHandler = require('./middlewares/errorHandler');
+// app.use(errorHandler);
+
 
 // Rutas
-app.use('/users', userRoutes);
+app.use(express.json());
+app.use('/usuarios', usuarioRoutes);
 app.use('/requests', requestRoutes);
 app.use('/terrenos', terrenoRoutes);
 

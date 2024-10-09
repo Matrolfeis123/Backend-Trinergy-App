@@ -1,4 +1,4 @@
-const { Request } = require('../models');
+const { Request, Terreno } = require('../models');
 
 // Obtener todas las solicitudes (GET)
 exports.getAllRequests = async (req, res) => {
@@ -61,5 +61,39 @@ exports.updateRequest = async (req, res) => {
     } catch (error) {
         console.error('Error al actualizar la solicitud:', error);
         res.status(500).json({ success: false, message: 'Error al actualizar la solicitud' });
+    }
+};
+
+exports.getRequestWithTerrenos = async (req, res) => {
+    try {
+        const requestId = req.params.id; // ID de la solicitud a obtener
+
+        const request = await Request.findOne({
+            where: { id: requestId },
+            include: [
+                {
+                    model: Terreno,
+                    as: 'terrenos', // Alias definido en la asociación
+                },
+            ],
+        });
+
+        if (!request) {
+            return res.status(404).json({
+                success: false,
+                message: 'Solicitud no encontrada',
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: request,
+        });
+    } catch (error) {
+        console.error('Error al obtener la solicitud:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener la solicitud',
+        });
     }
 };
