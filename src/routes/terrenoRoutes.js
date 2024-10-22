@@ -6,7 +6,7 @@ const terrenoController = require('../controllers/terrenoController');
 
 // Rutas para terrenos
 router.get('/', terrenoController.getAllTerrenos);
-router.post('/:requestId/terrenos', terrenoController.createTerreno); // Crear un terreno asociado a una request específica
+router.post('/addterrenoasolicitud/:requestId', terrenoController.createTerreno); // Crear un terreno asociado a una request específica
 
 
 module.exports = router;

@@ -11,6 +11,7 @@ exports.getAllRequests = async (req, res) => {
     }
 };
 
+// Obtener una solicitud por ID (GET)
 exports.getRequestById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -63,6 +64,7 @@ exports.updateRequest = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error al actualizar la solicitud' });
     }
 };
+
 
 exports.getRequestWithTerrenos = async (req, res) => {
     try {
