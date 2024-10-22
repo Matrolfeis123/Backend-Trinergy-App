@@ -1,5 +1,4 @@
 'use strict';
-
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -19,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false,
       },
       estado: {
         type: DataTypes.STRING,

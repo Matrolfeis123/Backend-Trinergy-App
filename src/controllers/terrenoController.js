@@ -41,3 +41,41 @@ exports.createTerreno = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error al crear el terreno' });
     }
 };
+
+// Obtener un terreno por su ID
+exports.getTerrenoById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const terreno = await Terreno.findByPk(id, {
+            include: [{ model: Request, as: 'request' }],
+        });
+
+        if (terreno) {
+            res.status(200).json({ success: true, data: terreno });
+        } else {
+            res.status(404).json({ success: false, message: 'Terreno no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error al obtener el terreno:', error);
+        res.status(500).json({ success: false, message: 'Error al obtener el terreno' });
+    }
+};
+
+// Actualizar un terreno por su ID: Aca, quizas seria mejor dar la posibilidad de editar algunos campos unicamente, como por ejemplo, el propietario o el propietario_cel, etc.
+exports.updateTerreno = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const [updated] = await Terreno.update(req.body, { where: { id } });
+
+        if (updated) {
+            const updatedTerreno = await Terreno.findOne({ where: { id } });
+            res.status(200).json({ success: true, data: updatedTerreno });
+        } else {
+            res.status(404).json({ success: false, message: 'Terreno no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error al actualizar el terreno:', error);
+        res.status(500).json({ success: false, message: 'Error al actualizar el terreno' });
+    }
+};
+

@@ -1,6 +1,9 @@
 # README
 Este archivo nos permitira ir anotando apuntes y cosas importantes de configuracion del entorno de ejecucion, uso de comandos de sequelize, etc.
 
+## Para correr el Docker de la app:
+docker-compose -f docker-compose-development.yml down
+docker-compose -f docker-compose-development.yml up --build (cuando se corre por primera vez)
 
 
 ## Comandos Sequelize-CLI
